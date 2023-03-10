@@ -52,7 +52,6 @@ public class Customers {
 			 
 			 
 
-			// Group customers by country, state, and city
 			 Map<String, Map<String, Map<String, List<Customers>>>> groupedCustomers = new HashMap<>();
 			  for (Customers customer : customers) {
 				  String country = customer.country;
@@ -60,12 +59,10 @@ public class Customers {
 			      String city = customer.city;
 			      
 
-			    // Add customer to the appropriate group
 			      groupedCustomers.computeIfAbsent(country, k -> new HashMap<>()).computeIfAbsent(state, k -> new HashMap<>()).computeIfAbsent(city,k-> new ArrayList<>()).add(customer);
 			      }
 			  
 
-			// Print country-wise total customers
 			  System.out.println("--------------------------------------Country-wise Total Customers:-------------------------------------");
 			  
 			  
@@ -96,17 +93,14 @@ public class Customers {
 			      System.out.println(country + ", " + state + ":" +stateTotalCustomers + "customers");
 			      }
 				  }
-			// Print country-wise, state-wise, and district-wise customers
 			  System.out.println("--------------------------------Country, State and District-wise Customers:----------------------------");
 
-			  // Group customers by country, state, and district
 			  Map<String, Map<String, Map<String, List<Customers>>>> countryStateDistrictMap = new HashMap<>();
 			  for (Customers customer : customers) {
 			      String country = customer.country;
 			      String state = customer.state;
 			      String district = customer.city;
 
-			      // Group customers by district
 			      if (!countryStateDistrictMap.containsKey(country)) {
 			          countryStateDistrictMap.put(country, new HashMap<>());
 			      }
@@ -119,7 +113,6 @@ public class Customers {
 			      countryStateDistrictMap.get(country).get(state).get(district).add(customer);
 			  }
 
-			  // Print country-wise, state-wise, and district-wise customers
 			  for (Map.Entry<String, Map<String, Map<String, List<Customers>>>> countryEntry :
 			          countryStateDistrictMap.entrySet()) {
 			      String country = countryEntry.getKey();
